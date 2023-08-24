@@ -1,2 +1,2 @@
 # TriAutomacao
-este de automação no Trilogo
+Teste de automação no Trilogo
