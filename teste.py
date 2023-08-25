@@ -2,6 +2,21 @@
 import time
 from selenium import webdriver
 
+#Importando para leitura do Excel
+import pandas as pd
+
+
+#Criando a leitura de arquivo
+Arquivo = 'Filiais.xlsx'
+
+#df = DataFrame
+df = pd.read_excel(Arquivo)
+
+for index,row in df.iterrows():
+    print(' Linha: ' + str(index) + "Nome da filial e  " + row["Nome da Filial"])
+
+
+
 # Atualizando o Chrome Driver Manager automaticamente
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
