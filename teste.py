@@ -29,16 +29,14 @@ navegador.get('https://homologacao.trilogo.app')
 time.sleep(2)
 
 #Solicitando os dados do usuario
-#login = input("Digite seu email Trilogo: ")
-#senha = input("Digite sua senha: ")
+login = input("Digite seu email Trilogo: ")
+senha = input("Digite sua senha: ")
 #Inserindo dados de login
 
 #TESTE
-navegador.find_element('xpath','//*[@id="email"]').send_keys('breno.mendonca@trilogo.com.br')
-navegador.find_element('xpath','//*[@id="password"]').send_keys('@Breno059')
+navegador.find_element('xpath','//*[@id="email"]').send_keys(login)
+navegador.find_element('xpath','//*[@id="password"]').send_keys(senha)
 
-#navegador.find_element('xpath','//*[@id="email"]').send_keys(login)
-#navegador.find_element('xpath','//*[@id="password"]').send_keys(senha)
 navegador.find_element('xpath','//*[@id="submit"]').click()
 
 time.sleep(3)  # Aguarda 03 segundos (pode ajustar esse valor)
