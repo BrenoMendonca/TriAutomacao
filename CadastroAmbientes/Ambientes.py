@@ -21,9 +21,8 @@ servico = Service(ChromeDriverManager().install())
 navegador = webdriver.Chrome(service=servico)
 
 
-
     #Acessando o dominio
-navegador.get('https://gruponatureza.trilogo.app')
+navegador.get('https://homologacao.trilogo.app')
 
 
 time.sleep(2)
@@ -41,7 +40,14 @@ navegador.find_element('xpath','//*[@id="submit"]').click()
 
 time.sleep(3)  # Aguarda 03 segundos (pode ajustar esse valor)
 
-navegador.get('https://gruponatureza.trilogo.app/departments')
+navegador.get('https://homologacao.trilogo.app/departments')
+
+    #Criando o Array para solicitação dos ambientes
+num_ambientes = int(input("Quantos ambientes você deseja preencher? "))
+nomes_ambientes = []
+for i in range(num_ambientes):
+    nome_ambiente = input(f"Digite o nome do ambiente {i + 1}: ")
+    nomes_ambientes.append(nome_ambiente)
 
 time.sleep(2)
 for index,row in df.iterrows():
@@ -56,21 +62,16 @@ for index,row in df.iterrows():
     navegador.find_element('css selector','div button[class = addNewItem]').click()
     time.sleep(1)
         #Clicando no modal de cadastro de ambientes
-    navegador.find_element('xpath','//*[@id="continueIncluding"]')
-        #Preenchendo o modal
-    #navegador.find_element('css selector', 'td input[id=name]').send_keys('Retaguarda')
-    time.sleep(2)
-    navegador.find_element('xpath', '/html/body/div[2]/div/div[2]/div/div[2]/div[3]/button[2]').click()
-    time.sleep(1)
-    navegador.find_element('css selector', 'td input[id=name]').send_keys('Salão de Vendas')
-    navegador.find_element('xpath', '/html/body/div[2]/div/div[2]/div/div[2]/div[3]/button[2]').click()
-    time.sleep(1)
-    navegador.find_element('css selector', 'td input[id=name]').send_keys('Fachada')
-    navegador.find_element('xpath', '/html/body/div[2]/div/div[2]/div/div[2]/div[3]/button[2]').click()
-
-
-
-
+    #navegador.find_element('xpath','/html/body/div[2]/div/div[2]/div/div[2]/div[2]/div[2]').click()    
+    for nome_ambiente in nomes_ambientes:
+   
+        navegador.find_element('xpath','/html/body/div[2]/div/div[2]/div/div[2]/div[2]/div[2]').click()
+            #Preenchendo o modal
+        navegador.find_element('css selector', 'td input[id=name]').send_keys('Retaguarda')
+        time.sleep(2)
+        navegador.find_element('xpath', '/html/body/div[2]/div/div[2]/div/div[2]/div[3]/button[2]').click()
+        time.sleep(1)
+    
 time.sleep(2)
 
 
