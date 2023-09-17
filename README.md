@@ -3,7 +3,7 @@
 🚀
 <h2>Material de estudo para um Triloger colocar seu conhecimento em dia</h2>
 
-O Trantor esá sendo desenvolvido para ser seu auxílio diário, especialmente com as tarefas manuais que consomem a maior parte do seu tempo. Ele está aqui para ser o seu ajudante!
+O Trantor está sendo desenvolvido para ser seu auxílio diário, especialmente com as tarefas manuais que consomem a maior parte do seu tempo. Ele está aqui para ser o seu ajudante!
 
 * 01 Cadastra automaticamente os CNPJs de várias unidades 
 
