@@ -5,7 +5,9 @@
 
 O Trantor esá sendo desenvolvido para ser seu auxílio diário, especialmente com as tarefas manuais que consomem a maior parte do seu tempo. Ele está aqui para ser o seu ajudante!
 
-* 01 Cadastra automaticamente os CNPJs de várias unidades 
+* 01 Cadastra automaticamente os CNPJs de várias unidades - Concluido
+* 02 Te entrega a lista de usuarios de um dominio - Em produção
+* 03 Criação de Bens - Em produção
 
 <h3>Tecnologias utilizadas</h3>
 
