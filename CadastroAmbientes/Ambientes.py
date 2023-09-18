@@ -4,6 +4,11 @@ from selenium import webdriver
 
     #Importando para leitura do Excel
 import pandas as pd
+import sys
+sys.path.append('..')
+
+from Inicio import FazerLogin
+login,senha = FazerLogin()
 
 
     #Criando a leitura de arquivo
@@ -28,8 +33,8 @@ navegador.get('https://homologacao.trilogo.app')
 time.sleep(2)
 
     #Solicitando os dados do usuario
-login = input("Digite seu email Trilogo: ")
-senha = input("Digite sua senha: ")
+#login = input("Digite seu email Trilogo: ")
+#senha = input("Digite sua senha: ")
     
 
     #Inserindo dados de login
@@ -50,27 +55,30 @@ for i in range(num_ambientes):
     nomes_ambientes.append(nome_ambiente)
 
 time.sleep(2)
+#Inserindo a Unidade e puxando a Unidade para o Loop
 for index,row in df.iterrows():
 
-        #Inserindo a Unidade e puxando a Unidade para o Loop
+    #Pesquisando pela unidade da planilha
     navegador.find_element('css selector','div input[id=searchTerm]').send_keys(row['Unidades'])
     print(' \n Linha: ' + str(index) + " A filial que está sendo cadastrada é: " + row["Unidades"]+"\n")
 
     navegador.find_element('xpath','//*[@id="root"]/div/div/div[2]/div/div/div[2]/div[1]/div/div[2]/div[1]/span/span/span/button').click()
     time.sleep(2)
 
-    navegador.find_element('css selector','div button[class = addNewItem]').click()
+    navegador.find_element('xpath','//*[@id="root"]/div/div/div[2]/div/div/div[2]/div[1]/div/div[2]/div[2]/div/div/div/div[1]/div/table/tbody/tr[1]/td[2]/div/button[1]').click()
     time.sleep(1)
-        #Clicando no modal de cadastro de ambientes
+    #Clicando no modal de cadastro de ambientes
     #navegador.find_element('xpath','/html/body/div[2]/div/div[2]/div/div[2]/div[2]/div[2]').click()    
     for nome_ambiente in nomes_ambientes:
-   
+        time.sleep(2)
         navegador.find_element('xpath','/html/body/div[2]/div/div[2]/div/div[2]/div[2]/div[2]').click()
-            #Preenchendo o modal
-        navegador.find_element('css selector', 'td input[id=name]').send_keys('Retaguarda')
+        #Preenchendo o modal
+        navegador.find_element('css selector', 'td input[id=name]').send_keys(nome_ambiente)
         time.sleep(2)
         navegador.find_element('xpath', '/html/body/div[2]/div/div[2]/div/div[2]/div[3]/button[2]').click()
-        time.sleep(1)
+        #time.sleep(2)
+        print('\n Ambiente cadastrado '+ nome_ambiente)
+        
     
 time.sleep(2)
 
