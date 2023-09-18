@@ -28,19 +28,19 @@ navegador.get('https://comercial.trilogo.app')
 time.sleep(2)
 
     #Solicitando os dados do usuario
-#login = input("Digite seu email Trilogo: ")
-#senha = input("Digite sua senha: ")
+login = input("Digite seu email Trilogo: ")
+senha = input("Digite sua senha: ")
     
 
     #Inserindo dados de login
-navegador.find_element('xpath','//*[@id="email"]').send_keys('breno.mendonca@trilogo.com.br')
-navegador.find_element('xpath','//*[@id="password"]').send_keys('@Breno059')
+navegador.find_element('xpath','//*[@id="email"]').send_keys(login)
+navegador.find_element('xpath','//*[@id="password"]').send_keys(senha)
 
 navegador.find_element('xpath','//*[@id="submit"]').click()
 
 time.sleep(3)  # Aguarda 03 segundos (pode ajustar esse valor)
 
-Filiais_com_erro = [] #Criando o Array 
+Patrimonio_com_erro = [] #Criando o Array 
 for index,row in df.iterrows():
         #pagina de cadastro
         navegador.get('https://comercial.trilogo.app/assets')
@@ -67,7 +67,20 @@ for index,row in df.iterrows():
         time.sleep(2)
         navegador.find_element('xpath','//*[@id="next"]').click()
         time.sleep(2)
-        navegador.find_element('xpath','//*[@id="createAsset"]').click()
-        time.sleep(2)
+        try:
+            navegador.find_element('xpath','//*[@id="createAsset"]').click()
+            time.sleep(2)
+            print('\n Ambiente com o patrimonio '+ row['Patrimonio'] + 'Cadastrado \n')
+        except:
+              print('Patrimonio' + row['Patrimonio'] + ' repetido ou com inconsistencia \n')
+              Patrimonio_com_erro.append(row)  # Adicionando o Patrimonio com erro ao Array
+              time.sleep(3)
+        continue
+if Patrimonio_com_erro:
+    print("Lojas com erro:")
+    for Patrimonio in Patrimonio_com_erro:
+        print(f'Patrimonio: {Patrimonio}')
+else:
+    print("Todos os patrimônios foram cadastrados com sucesso.")
 
 
